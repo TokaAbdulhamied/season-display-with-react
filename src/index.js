@@ -1,17 +1,33 @@
 // import react and reactDom lib
 import React from "react";
 import ReactDOM from "react-dom";
+import Comment from "./comment";
+import faker from "faker";
+import ApprovalCard from "./approvalCard";
+
 // creat react-components
-const buttonText = "Add";
 
 const App = () => {
   return (
-    <div>
-      <label htmlFor="name">Enter Name</label>
-      <input type="text" />
-      <button type="submit" style={{ color: "white", backgroundColor: "blue" }}>
-        {buttonText}
-      </button>
+    <div className="ui comments container">
+      <ApprovalCard>
+        <Comment
+          author="Toka"
+          time="Today at 5:00"
+          text="this is the first comment "
+          avatar={faker.image.avatar()}
+        />
+      </ApprovalCard>
+      <ApprovalCard>
+        <h3>Warning</h3>
+        <div>are you sure?</div>
+      </ApprovalCard>
+      <Comment
+        author="Yaso"
+        time="Today at 2:30"
+        text="this is the second comment "
+        avatar={faker.image.avatar()}
+      />
     </div>
   );
 };
