@@ -1,35 +1,31 @@
-// import react and reactDom lib
 import React from "react";
 import ReactDOM from "react-dom";
-import Comment from "./comment";
-import faker from "faker";
-import ApprovalCard from "./approvalCard";
 
-// creat react-components
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    // initialzing state
+    // This is the only time we do direct assignment to this.state
+    this.state = { latitude: null, errMassage: "" };
 
-const App = () => {
-  return (
-    <div className="ui comments container">
-      <ApprovalCard>
-        <Comment
-          author="Toka"
-          time="Today at 5:00"
-          text="this is the first comment "
-          avatar={faker.image.avatar()}
-        />
-      </ApprovalCard>
-      <ApprovalCard>
-        <h3>Warning</h3>
-        <div>are you sure?</div>
-      </ApprovalCard>
-      <Comment
-        author="Yaso"
-        time="Today at 2:30"
-        text="this is the second comment "
-        avatar={faker.image.avatar()}
-      />
-    </div>
-  );
-};
-// render the component in the screen
-ReactDOM.render(<App />, document.querySelector("#root"));
+    navigator.geolocation.getCurrentPosition(
+      // Each time we update state with SetState rerendering will accure
+      (position) => {
+        return this.setState({ latitude: position.coords.latitude });
+      },
+      (err) => {
+        return this.setState({ errMassege: err.message });
+      }
+    );
+  }
+  // WE HAVE TO DEFINE RENDER
+  render() {
+    if (this.state.errMassege && !this.state.latitude)
+      return <div>err:{this.state.errMassege}</div>;
+    else if (!this.state.errMassege && this.state.latitude)
+      return <div>latitude is :{this.state.latitude}</div>;
+    else return <div>Loading</div>;
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
