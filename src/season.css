@@ -1,0 +1,28 @@
+.left {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.right {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+.season {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.summer {
+  background-color: rgb(255, 196, 0);
+}
+.winter {
+  background-color: aliceblue;
+}
+.season.summer i {
+  color: red;
+}
+.season.winter i {
+  color: blue;
+}
