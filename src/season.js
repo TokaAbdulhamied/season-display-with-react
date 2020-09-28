@@ -20,7 +20,7 @@ const Season = (props) => {
   return (
     <div className={`season ${season}`}>
       <i className={`left massive ${iconName} icon`}></i>
-      <h1>{header} </h1>
+      <h1>{header}</h1>
       <i className={`right massive ${iconName} icon`}></i>
     </div>
   );

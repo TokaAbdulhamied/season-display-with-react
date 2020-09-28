@@ -3,10 +3,8 @@ import ReactDOM from "react-dom";
 import Season from "./season";
 class App extends React.Component {
   state = { latitude: null, errMassage: "" };
-  // Do one time data laoding and API requist
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-      // Each time we update state with SetState rerendering will accure
       (position) => {
         this.setState({ latitude: position.coords.latitude });
       },
@@ -30,7 +28,6 @@ class App extends React.Component {
       );
     }
   }
-  // WE HAVE TO DEFINE RENDER
   render() {
     return <div>{this.renderContent()}</div>;
   }
